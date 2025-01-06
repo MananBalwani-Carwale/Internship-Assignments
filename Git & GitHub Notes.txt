@@ -1,0 +1,47 @@
+We started with Git by starting studying about basics of Git 
+and how git works.
+In git their are four areas where code is putted : 
+    1. Local working directory.
+    2. Staging area.
+    3. Local Repository.
+    4. Remote Repository.
+Their are few commands to move the code from one area to another.
+We will go step by step to understand each area and how to push our code
+finally to Remote repository.
+1. Firstly the directory in which we are currently working and where we change all of our code
+is local working directory.
+2. When we run command "git add" the code is moved to the staging area
+where the snapshots to the files is taken and the code moves to
+the staging area.
+3. When we run command "git commit" then code is moved to the local
+repository and the changes are commited locally. In this we also have to pass a message
+for each commit which helps to reflect changes.
+4. When we run the command "git push" we add the changes to the remote repository.
+Here we also pass the branch in which we want to push the changes.
+
+The major difference between git and github is that git is installed to local machine
+and github provide the server to create and manage repositories remotely.
+
+Concept of Branches : 
+The branches are created for the main code to introduce some changes in a asynchronoous fashion.
+So that two or more teams can collaborate to the project.
+
+Now we will look into some git commands :
+1. git add : To add the directory to staging area.
+2. git status : To check the status of the branch in which we are currently working.
+3. git commit : To finalize the changes in the local repository.
+4. git push : To reflect changes to the remote repository.
+5. git merge : When we are done with the changes in a branch and want to merge it with the main branch
+we use this command. "git merge" saves complete history of the child branch also.
+6. git rebase : This command also helps in merging the two branches but it aligns the commits linearly.
+It also helps managing the commit history and makes it clean.
+7. git squash : This command helps to merge two branches but it merges all commits from child branch 
+and then add it to the main branch. It helps for more cleaner commit history as it does not store child branch commits.
+8. git clone : This command helps for cloning a repository to the local machine.
+9. git reset : This command is used to reset the commited changes or staged changes.
+
+Pull Requests : 
+The pull requests are generated when we fork a repository and make some changes to it.
+Then we raise a pull request and the owner of the repository decides whether to merge or not.
+
+This is a breif introduction to the Git and Github.

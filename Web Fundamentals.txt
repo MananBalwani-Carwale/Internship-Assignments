@@ -1,0 +1,86 @@
+We started with web fundamental basics which included starting with HTTP
+The basics of the Http are : 
+HTTP stands for HyperText Transfer Protocol.
+HTTP is a set of rules for computers which help commputers to communicate with each other.
+1. The links and images and all webpages are hypertext.
+2. When we request for them from the server they are broken into some packets and send it
+to the client.
+3. To transfer all these packets their are some set of rules laid by the HTTP.
+
+HTTP V/s HTTPS
+
+https includes an extra layer of security.
+It provides some features such as : 
+1. Encryption
+2. Security
+3. Trust
+
+Http headers 
+Headers of the request are used to explain type of the request some headers are : 
+It is the meta data of the request.
+
+1. Content-Type : This tells that how the client is intrested to take response.
+2. Content-Length : This tells the length of the content.
+
+Their are some types of the requests types which we can use in http : 
+1. GET : This type of request is used to get some data from server.
+2. POST : This type of request is used to post some data to the server.
+3. PATCH : This type of request is used to update some data to the server.
+4. DELETE : This type of request is used to delete some data to the server.
+5. HEAD : This type of request is used to get meta data of the data.
+6. OPTIONS : This type of request is used to send options available for that resource.
+7. CONNECT : This type of request is used to check the connection the server when we are using some kind of 
+proxy.
+8. TRACE : This type of request is used to find out the issues in
+the connection.
+
+Now we move towards API's
+API stands for Application Programming Interface
+The featured provided by the API are : 
+1. Reach
+2. Customisation
+3. Efficiency
+4. Adaptibility
+
+Types of API : 
+1. Open API
+2. Internal API
+3. Partner API
+4. Composite API
+
+Types of API based on Architecture : 
+1. SOAP API : Simple Object Access Protocol. It basically works on XML
+2. REST API : Representational State Transfer. It used JSON (Javascript Object Notation)
+3. GraphQL API : It is a query language for API and a runtime for fullfilling those queries with exisitng data.
+
+REST API : 
+REST API stands for Representational State Transfer
+It has some rules which are needed to be followed : 
+1. Uniform Interface
+2. Client Server Architecture
+3. Statelessness
+4. Cacheable
+5. Layered System
+6. Code on Demand (Optional)
+
+Featured provided by REST API : 
+1. Simplicity
+2. Scalability
+3. Flexibility
+4. Technology Independence
+5. Well Suppoted
+
+Naming Conventions of REST API URI : 
+1. Noun over verbs : for example "/api/product"
+2. Plural Nouns in resource URI : for example "/api/products"
+3. Versioning RESTful API's : The versioning of API's can be done in some several ways
+    a. URI Versioning : for example "api/v1/products", "/api/v2/products"
+    b. Request Parameter Versioning : for example "/api/products?version=2", "/api/products?version=1"
+    c. Custom Header Versioning : In this we add a custom request header named as version and set its value.
+    d. Content Negotiation Versioning : Content Negotiation means that both client tells server what type of communication client is expecting.
+4. Use of proper HTTP Status codes.
+5.Error Handling and Validation
+6. Pagination and Filtering.
+7. Handling Authentication and Authorization.
+
+This is all about web fundamentals.
