@@ -19,20 +19,20 @@
                 <div class = "form">
                     <form onsubmit = "submitForm()">
                         <label class = "label" for = "username">Username : </label><br />
-                        <input class = "input username" type = "text" id = "username" name = "username" onchange = "validateUsername()" minlength = 3 maxlength = 25 required>
+                        <input class = "input username" type = "text" id = "username" name = "username" oninput = "validateUsername()" minlength = 3 maxlength = 25 required>
                         <span class = "error" id = "username-error"></span><br />
                         <label class = "label" for = "email">Email : </label><br />
-                        <input class = "input email" type = "email" id = "email" name = "email" onchange = "validateEmail()" required>
+                        <input class = "input email" type = "email" id = "email" name = "email" oninput = "validateEmail()" required>
                         <span class = "error" id = "email-error"></span><br />
                         <label class = "label" for = "password">Password : </label><br />
                         <div class = "password-container">
-                            <input class = "input password" type = "password" id = "password" name = "password" onchange = "validatePassword()" minlength = 8 required>
+                            <input class = "input password" type = "password" id = "password" name = "password" oninput = "validatePassword()" minlength = 8 required>
                             <img src = "icons/eye-slash-solid.svg" class = "icon" id = "passwordIcon" onclick = "togglePassword('password','passwordIcon')">
                         </div>
                         <span class = "error" id = "password-error"></span> <br />
                         <label class = "label" for = "confirmPassword">Confirm Password : </label><br />
                         <div class = "password-container">
-                            <input class = "input confirm-password" type = "password" id = "confirmPassword" name = "confirmPassword" onchange = "validateConfirmPassword()" required>    
+                            <input class = "input confirm-password" type = "password" id = "confirmPassword" name = "confirmPassword" oninput = "validateConfirmPassword()" required>    
                             <img src = "icons/eye-slash-solid.svg" class = "icon" id= "confirmPasswordIcon" onclick = "togglePassword('confirmPassword','confirmPasswordIcon')">
                         </div>
                         <span class = "error" id = "confirm-password-error"></span><br />
