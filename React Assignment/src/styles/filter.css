@@ -1,0 +1,25 @@
+.checkBox
+{
+    accent-color : rgb(27, 161, 45);
+    width : 15px;
+    height : 15px;
+}
+.labelText
+{
+    font-size : 14pt;
+}
+.filterInput
+{
+    width : 60px;
+    height : 10px;
+    padding : 10px;
+    font-size : 14pt;
+}
+.budgetFilters
+{
+    margin-left : 10px;
+}
+.filterCheckBox
+{
+    padding : 5px;
+}

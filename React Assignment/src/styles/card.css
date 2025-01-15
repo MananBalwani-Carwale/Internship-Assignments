@@ -1,0 +1,38 @@
+.cardDiv
+{
+    border : 1px solid grey;
+    border-radius : 6px;
+    padding-top : 0px;
+    width : 250px;
+    min-height : 350px;
+    padding : 10px;
+    margin : 10px;
+}
+.cardImage
+{
+    border : 1px solid grey;
+    border-radius : 6px;
+    width : 250px;
+    height : 200px;
+    display : block;
+}
+.carName
+{
+    font-weight : bold;
+    font-size : 14pt;
+    text-overflow : ellipsis;
+    overflow : hidden;
+    white-space: nowrap;
+    width : 250px;
+}
+.cardButton
+{
+    cursor : pointer;
+    width : 250px;
+    padding : 10px;
+    font-size : 12pt;
+    color : white;
+    background-color : #e03012;
+    border-color : #e03012;
+    border-radius : 3px;
+}
