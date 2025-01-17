@@ -23,3 +23,12 @@
 {
     padding : 5px;
 }
+.errorShow
+{
+    display : block;
+    color : red;
+}
+.errorHide
+{
+    display : none;
+}

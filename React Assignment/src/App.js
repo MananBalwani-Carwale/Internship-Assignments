@@ -8,7 +8,7 @@ function App() {
     const loading = useSelector(store => store.carData.loading);
     return (
         <div className = "mainDiv">
-            {loading == true && <Loading />}
+            <Loading show = {loading} />
             <div className = "filterDiv">
                 <Filter />
             </div>

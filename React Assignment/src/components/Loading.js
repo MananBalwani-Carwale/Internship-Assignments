@@ -1,10 +1,11 @@
 import React from 'react';
 import LoadingIcon from './assets/Loading.gif';
 import './../styles/loading.css';
-const Loading = ()=>
+const Loading = (props)=>
 {
     return (
-        <div className = "loadingDiv">
+        props.show &&
+        <div data-testid = "loadingComponent" className = "loadingDiv">
             <img className = "loadingIcon" src = {LoadingIcon} />
         </div>
     );

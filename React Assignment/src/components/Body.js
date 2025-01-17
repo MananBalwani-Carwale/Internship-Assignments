@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from './../redux/CarData/CarDataActions';
 import Card from './Card';
 import './../styles/body.css';
+import sortData from './utils/Sort';
 const Body = ()=>
 {
     const dispatch = useDispatch();
@@ -15,35 +16,13 @@ const Body = ()=>
     var loading = cars.loading;
     var error = cars.error;
     var sort = filterStore.sort;
-    var data = cars.data.stocks;
-    if(loading === false && sort === "Price - Low to High" && error === "")
+    var data = [];
+    if(loading  === false && error === "")
     {
-        data = data.sort((a,b)=>
-        {
-            return a['priceNumeric'] - b['priceNumeric'];
-        });
+        data = cars.data.stocks;
+        data = sortData(data,sort);
     }
-    if(loading === false && sort === "Price - High to Low" && error === "")
-    {
-        data = data.sort((a,b)=>
-        {
-            return b['priceNumeric'] - a['priceNumeric'];
-        });
-    }
-    if(loading === false && sort === "km - Low to High" && error === "")
-    {
-        data = data.sort((a,b)=>
-        {
-            return a['kmNumeric'] - b['kmNumeric'];
-        });
-    }
-    if(loading === false && sort === "km - High to Low" && error === "")
-    {
-        data = data.sort((a,b)=>
-        {
-            return b['kmNumeric'] - a['kmNumeric'];
-        });
-    }
+    
     return (
         <div className = "cardContent">
         {

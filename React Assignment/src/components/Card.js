@@ -3,7 +3,7 @@ import './../styles/card.css';
 const Card = (props)=>
 {
     return (
-        <div className = "cardDiv">
+        <div data-testid = "cardComponent" className = "cardDiv">
             <img className = "cardImage" src = {props.car.stockImages[0]} />
             <div className = "carName">
                 {props.car.carName}

@@ -1,8 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
-
-test('renders learn react link', () => {
+import { useSelector, useDispatch } from 'react-redux';
+jest.mock('react-redux');
+test('Testing Loading functionality', () => {
+  useSelector.mockReturnValue(true);
+  useSelector.mockReturnValue({
+    fuel : "",
+    budget : "",
+    sort : "Price - Low to High"
+  });
+  useSelector.mockReturnValue({
+  loading : true,
+  data : {},
+  error : ""
+  });
+  useDispatch.mockReturnValue((func)=>{});
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  var loading = screen.getByTestId("loadingComponent");
+  expect(loading).toBeInTheDocument();
 });

@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 export const FETCH_DATA = "FETCH_DATA";
 function fetchDataRequest()
 {
@@ -31,9 +31,12 @@ function fetchData(payload = {})
                 }
             }
         }
-        axios(url).then((response)=>
+        fetch(url).then((response)=>
         {
-            dispatch(fetchDataSuccess(response.data));
+            return response.json();
+        }).then((jsonData)=>
+        {
+            dispatch(fetchDataSuccess(jsonData));
         }).catch((error)=>
         {
             dispatch(fetchDataFailure(error.message));

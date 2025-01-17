@@ -4,7 +4,7 @@ const CheckBox = ({id,text,value,clickHandler,checked})=>
 {
     return (
         <div className = "filterCheckBox">
-            <input className = "checkBox" id = {id} type = "checkbox" value = {value} onClick = {()=>clickHandler({value})} checked = {checked} />
+            <input className = "checkBox" data-testid = {id} id = {id} type = "checkbox" value = {value} onClick = {()=>clickHandler({value})} defaultChecked = {checked} />
             <label className = "labelText" htmlFor = {id}>  {text}</label><br />
         </div>
     );

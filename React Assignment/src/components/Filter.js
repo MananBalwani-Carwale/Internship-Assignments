@@ -11,6 +11,7 @@ const Filter = ()=>
     var [fuelsChecked,setFuelsChecked] = useState([]);
     var [min,setMin] = useState(0);
     var [max,setMax] = useState(21);
+    var [error, setError] = useState("errorHide");
     const dispatch = useDispatch();
     var fuel = useSelector(store => store.filterData.fuel);
     const changeFuel = (value)=>
@@ -63,6 +64,15 @@ const Filter = ()=>
     function changeMinBudget(event)
     {
         setMin(event.target.value);
+        if(event.target.value < 0 || event.target.value > max)
+        {
+            setError("errorShow");
+            return;
+        }
+        else
+        {
+            setError("errorHide");
+        }
         if(event.target.value != '' && max != '')
         {
             var budget = `${event.target.value}-${max}`;
@@ -72,6 +82,15 @@ const Filter = ()=>
     function changeMaxBudget(event)
     {
         setMax(event.target.value);
+        if(event.target.value > 21 || event.target.value < min)
+        {
+            setError("errorShow");
+            return;
+        }
+        else
+        {
+            setError("errorHide");
+        }
         if(event.target.value != '' && min != '')
         {
             var budget = `${min}-${event.target.value}`;
@@ -126,9 +145,10 @@ const Filter = ()=>
                 <Box sx={{width : 180}}>
                     <Slider value = {[min,max]} onChange = {changeSliderValue} min = {0} max = {21} disableSwap />
                 </Box>
-                <input type = "number" className = "filterInput" onChange = {changeMinBudget} value = {min} />
+                <input type = "number" className = "filterInput" onChange = {changeMinBudget} value = {min} min = {0} />
                 &nbsp;&nbsp;-&nbsp;&nbsp;
-                <input type = "number" className = "filterInput" onChange = {changeMaxBudget} value = {max} />
+                <input type = "number" className = "filterInput" onChange = {changeMaxBudget} value = {max} max = {21} />
+                <span className = {error} id  = "error"> Enter Correct Value in between 0 - 21</span>
             </div>
             <br />
             Fuel Type
