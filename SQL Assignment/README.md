@@ -1,7 +1,7 @@
 # E Commerce Database Schema
 The schema of the Database is represented as an E-R (Entity Relationship) Diagram.
 The diagram has been described below.
-<img src = "/images/DataBase Schema.png">
+<img src = "/tree/main/SQL%20Assignment/imagesDataBase Schema.png">
 
 ## Tables in the Schema
 The schema includes some table such as : 
