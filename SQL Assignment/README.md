@@ -46,7 +46,7 @@ The Schema.sql consist of the code to create all the tables required in the data
 The name of the database is `e_commerce_website`.
 
 The output of the Schema.sql
-<img src = "./images/Schema.png">
+![alt text](image-1.png)
 
 ### Inserting data to tables
 
@@ -56,7 +56,7 @@ First we will insert the customers in the customers table.
 ```
 
 The output of this query will be 
-<img src = "./images/InsertCustomers.png">
+![alt text](image-2.png)
 
 Then we will insert the categories and products by
 ```bash
@@ -64,14 +64,14 @@ Then we will insert the categories and products by
     source InsertProducts.sql
 ```
 This will give us output as 
-<img src = "./images/InsertCategories.png">
+![alt text](image-3.png)
 
 Then to generate orders we will run the InsertOrders.sql file as
 ```bash
     source InsertOrders.sql
 ```
 This will give us output as
-<img src = "./images/InsertOrders.png">
+![alt text](image-4.png)
 
 Now we are completed with populating tables with data.
 
@@ -85,7 +85,7 @@ To run these files write these commands
     source UpdateOrder.sql
 ```
 The output is 
-<img src = "./images/UpdateCustomers.png">
+![alt text](image-5.png)
 
 ### Retreiving Order information and Product and Customer details
 
@@ -94,7 +94,7 @@ To get order information along with customer and product details we use ShowOrde
     source ShowOrders.sql
 ```
 The output of the query is 
-<img src = "./images.ShowOrders.png">
+![alt text](image-6.png)
 
 To get products we can use file ShowProducts.sql
 
@@ -102,7 +102,8 @@ To get products we can use file ShowProducts.sql
     source ShowProducts.sql
 ```
 The output is 
-<img src = "./images/ShowProducts.png">
+![alt text](image-7.png)
+
 ### Getting Revennue for Specific time
 
 To get revennue of specific time we can use the GetRevennue.sql file.
@@ -111,7 +112,7 @@ To get revennue of specific time we can use the GetRevennue.sql file.
     source GetRevennue.sql
 ```
 The output is 
-<img src = "./images/GetRevennue.png">
+![alt text](image-8.png)
 
 ### Customer With Multiple Orders
 To do this first we need to insert a duplicate order for the user and then run the file CustomerWithMultipleOrders.sql
@@ -125,7 +126,7 @@ To do this first we need to insert a duplicate order for the user and then run t
     source CustomerWithMultipleOrders.sql
 ```
 The output is 
-<img src = "./images/CustomerWithMultipleOrders.png">
+![alt text](image-9.png)
 
 ### Deleting Product and Customers
 To delete customer we have to use DeleteCustomer.sql
@@ -133,7 +134,7 @@ To delete customer we have to use DeleteCustomer.sql
     source DeleteCustomer.sql
 ```
 The output is 
-<img src = "./images/DeleteCustomer.png">
+![alt text](image-10.png)
 
 To delete product we can use the DeleteProduct.sql file
 
@@ -141,7 +142,7 @@ To delete product we can use the DeleteProduct.sql file
     source DeleteProduct.sql
 ```
 The output is 
-<img src = "./images/DeleteProduct.png">
+![alt text](image-11.png)
 
 ## Indexing 
 Indexes help speed up search operations by allowing MySQL to locate the rows more quickly, reducing the time it takes to search through large amounts of data.
