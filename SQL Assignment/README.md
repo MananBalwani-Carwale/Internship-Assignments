@@ -1,10 +1,10 @@
 # E Commerce Database Schema
 The schema of the Database is represented as an E-R (Entity Relationship) Diagram.
 The diagram has been described below.
-<img src = "./images/DataBase Schema.png">
+<img src = "/images/DataBase Schema.png">
 
 ## Tables in the Schema
-The schema includes some tables such as : 
+The schema includes some table such as : 
 1. customers : This table stores the details of the customers the entities available in this table are : 
     - id : This is the primary key. This is `INT PRIMARY KEY AUTO_INCREMENT`.
     - first_name : This stores the first name of the customer This is of type `VARCHAR(50) NOT NULL`.
