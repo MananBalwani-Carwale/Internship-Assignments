@@ -1,1 +1,9 @@
 /React Assignment/node_modules
+/Stock-API/PresentationLayer/bin
+/Stock-API/PresentationLayer/obj
+/Stock-API/BusinessAccessLayer/bin
+/Stock-API/BusinessAccessLayer/obj
+/Stock-API/BusinessAccessLayer.Tests/bin
+/Stock-API/BusinessAccessLayer.Tests/obj
+/Stock-API/DataAccessLayer/bin
+/Stock-API/DataAccessLayer/obj

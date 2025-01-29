@@ -1,0 +1,22 @@
+INSERT INTO stocks (profile_id, price, fuel_type, kms, name, make_year, make_model, make_name)
+VALUES
+('P001', 150000, 'Petrol', 50000, 'Model A', 2018, 'A1', 'Toyota'),
+('P002', 200000, 'Diesel', 40000, 'Model B', 2020, 'B2', 'Honda'),
+('P003', 750000, 'Petrol', 30000, 'Model C', 2019, 'C3', 'Ford'),
+('P004', 1800000, 'Electric', 15000, 'Model D', 2022, 'D4', 'Tesla'),
+('P005', 500000, 'Hybrid', 70000, 'Model E', 2017, 'E5', 'BMW'),
+('P006', 1200000, 'Diesel', 55000, 'Model F', 2021, 'F6', 'Mercedes'),
+('P007', 200000, 'Petrol', 25000, 'Model G', 2018, 'G7', 'Audi'),
+('P008', 950000, 'Electric', 4000, 'Model H', 2023, 'H8', 'Nissan'),
+('P009', 1400000, 'Petrol', 60000, 'Model I', 2019, 'I9', 'Hyundai'),
+('P010', 300000, 'Diesel', 90000, 'Model J', 2016, 'J10', 'Kia'),
+('P011', 1100000, 'Electric', 10000, 'Model K', 2021, 'K11', 'Chevrolet'),
+('P012', 800000, 'Hybrid', 75000, 'Model L', 2020, 'L12', 'Mazda'),
+('P013', 1700000, 'Petrol', 65000, 'Model M', 2022, 'M13', 'BMW'),
+('P014', 650000, 'Diesel', 20000, 'Model N', 2021, 'N14', 'Audi'),
+('P015', 1250000, 'Hybrid', 30000, 'Model O', 2020, 'O15', 'Volkswagen'),
+('P016', 900000, 'Petrol', 120000, 'Model P', 2015, 'P16', 'Ford'),
+('P017', 2000000, 'Diesel', 45000, 'Model Q', 2022, 'Q17', 'Mercedes'),
+('P018', 400000, 'Electric', 50000, 'Model R', 2019, 'R18', 'Toyota'),
+('P019', 2100000, 'Petrol', 20000, 'Model S', 2023, 'S19', 'Tesla'),
+('P020', 1000000, 'Hybrid', 30000, 'Model T', 2021, 'T20', 'Honda');
