@@ -13,26 +13,77 @@ namespace BusinessAccessLayer.Service
         }
         public async Task<IEnumerable<StockEntity>> GetAllService(FilterEntity filterEntity)
         {
-            IEnumerable<StockEntity> stockEntities = await _stockRepository.GetAllAsync(filterEntity);
+            IEnumerable<StockEntity> stockEntities;
+            try
+            {
+                stockEntities = await _stockRepository.GetAllAsync(filterEntity);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
             return stockEntities;
         }
         public async Task<StockEntity> GetByIdService(int id)
         {
-            StockEntity stockEntity = await _stockRepository.GetByIdAsync(id);
+            StockEntity stockEntity;
+            try
+            {
+                stockEntity = await _stockRepository.GetByIdAsync(id);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
             return stockEntity;
         }
         public async Task AddService(StockEntity stockEntity)
         {
-            await _stockRepository.AddAsync(stockEntity);
+            try
+            {
+                await _stockRepository.AddAsync(stockEntity);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
         public async Task UpdateService(StockEntity stockEntity)
         {
-            
-            await _stockRepository.UpdateAsync(stockEntity);
+            try
+            {
+                StockEntity stock = await _stockRepository.GetByIdAsync(stockEntity.Id);
+                if(stock == null)
+                {
+                    throw new Exception("Cannot find stock");
+                }
+                await _stockRepository.UpdateAsync(stockEntity);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
         public async Task DeleteService(int id)
         {
-            await _stockRepository.DeleteAsync(id);
+            try
+            {
+                StockEntity stock = await _stockRepository.GetByIdAsync(id);
+                if(stock == null)
+                {
+                    throw new Exception("Cannot find stock");
+                }
+                await _stockRepository.DeleteAsync(id);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
         public bool GetIsValueForMoney(int kms, int price)
         {

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.DTO;
 using DataAccessLayer.Entity;
 using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.OpenApi.Expressions;
 namespace PresentationLayer.Controller
 {
     [ApiController]
@@ -20,41 +22,89 @@ namespace PresentationLayer.Controller
         public async Task<IActionResult> GetAllAsync([FromQuery] FilterDTO filterDTO)
         {
             FilterEntity filterEntity = _mapper.Map<FilterDTO, FilterEntity>(filterDTO);
+            IEnumerable<StockDTO> stocks;
             //call for service method
-            IEnumerable<StockEntity> stockEntities = await _stockService.GetAllService(filterEntity);
-            IEnumerable<StockDTO> stocks = _mapper.Map<IEnumerable<StockEntity>, IEnumerable<StockDTO>>(stockEntities);
-            stocks = stocks.Select(item => 
+            try
             {
-                item.IsValueForMoney = _stockService.GetIsValueForMoney(item.Kms, item.Price);
-                return item;
-            }).ToList();
+                IEnumerable<StockEntity> stockEntities = await _stockService.GetAllService(filterEntity);
+                stocks = _mapper.Map<IEnumerable<StockEntity>, IEnumerable<StockDTO>>(stockEntities);
+                stocks = stocks.Select(item => 
+                {
+                    item.IsValueForMoney = _stockService.GetIsValueForMoney(item.Kms, item.Price);
+                    return item;
+                }).ToList();
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
+                {
+                    StatusCode = 500
+                };
+            }
             return Ok(stocks);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            StockEntity stockEntity = await _stockService.GetByIdService(id);
-            if(stockEntity == null)
-                return NotFound();
-            StockDTO stockDTO = _mapper.Map<StockEntity, StockDTO>(stockEntity);
-            stockDTO.IsValueForMoney = _stockService.GetIsValueForMoney(stockDTO.Kms, stockDTO.Price);
+            StockDTO stockDTO;
+            try
+            {
+                StockEntity stockEntity = await _stockService.GetByIdService(id);
+                stockDTO = _mapper.Map<StockEntity, StockDTO>(stockEntity);
+                stockDTO.IsValueForMoney = _stockService.GetIsValueForMoney(stockDTO.Kms, stockDTO.Price);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
+                {
+                    StatusCode = 500
+                };
+            }
             return Ok(stockDTO);
         }
         [HttpPost]
         public async Task<IActionResult> AddAsync(CreateStockDTO createStockDTO)
         {
             StockEntity stockEntity = _mapper.Map<CreateStockDTO, StockEntity>(createStockDTO);
-            await _stockService.AddService(stockEntity);
+            try
+            {
+                await _stockService.AddService(stockEntity);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
+                {
+                    StatusCode = 500
+                };
+            }
             return NoContent();
         }
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(UpdateStockDTO updateStockDTO)
         {
-            StockEntity stock = await _stockService.GetByIdService(updateStockDTO.Id);
-            if(stock == null)
-                return NotFound();
             StockEntity stockEntity = _mapper.Map<UpdateStockDTO, StockEntity>(updateStockDTO);
-            await _stockService.UpdateService(stockEntity);
+            try
+            {
+                await _stockService.UpdateService(stockEntity);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                if(exception.Message.Equals("Cannot find stock"))
+                {
+                    return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
+                    {
+                        StatusCode = 404
+                    };
+                }
+                return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
+                {
+                    StatusCode = 500
+                };
+            }
             return NoContent();
         }
         [HttpDelete("{id}")]
@@ -63,7 +113,25 @@ namespace PresentationLayer.Controller
             StockEntity stock = await _stockService.GetByIdService(id);
             if(stock == null)
                 return NotFound();
-            await _stockService.DeleteService(id);
+            try
+            {
+                await _stockService.DeleteService(id);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+                if(exception.Message.Equals("Cannot find stock"))
+                {
+                    return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
+                    {
+                        StatusCode = 404
+                    };
+                }
+                return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
+                {
+                    StatusCode = 500
+                };
+            }
             return NoContent();
         }
     }

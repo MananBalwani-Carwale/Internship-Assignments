@@ -12,7 +12,7 @@ public class FilterHandler : Profile
         CreateMap<FilterDTO, FilterEntity>().
         ForMember(item => item.MaxBudget, opt => opt.MapFrom(item => ConvertToMaxBudget(item.Budget))).
         ForMember(item => item.MinBudget, opt => opt.MapFrom(item => ConvertToMinBudget(item.Budget))).
-        ForMember(item => item.FuelTypes, opt => opt.MapFrom(item => ConvertToFuelType(item.FuelTypes)));
+        ForMember(item => item.FuelTypes, opt => opt.MapFrom(item => ConvertToFuelType(item.FuelType)));
     }
     public static int ConvertToMaxBudget(string budget)
     {
