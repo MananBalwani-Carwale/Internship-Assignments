@@ -2,7 +2,8 @@ using BusinessAccessLayer.Service;
 using AutoMapper;
 using PresentationLayer.Handler;
 using DataAccessLayer.Repository;
-using Microsoft.Extensions.Configuration;
+using PresentationLayer.ExceptionHandler;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -37,6 +38,9 @@ if (app.Environment.IsDevelopment())
     //swagger configuration ended
     app.MapOpenApi();
 }
+
+//Global Exception Handling
+app.UseMiddleware<GlobalExceptionHandler>();
 
 app.UseHttpsRedirection();
 app.MapControllers();

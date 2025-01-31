@@ -1,3 +1,4 @@
+using System;
 using BusinessAccessLayer.Service;
 using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.DTO;
@@ -34,6 +35,8 @@ public class StockController : ControllerBase
         try
         {
             IEnumerable<StockEntity> stockEntities = await _stockService.GetAllService(filterEntity);
+            if(stockEntities == null)
+                throw new Exception("Stocks not found");
             stocks = _mapper.Map<IEnumerable<StockEntity>, IEnumerable<StockDTO>>(stockEntities);
             stocks = stocks.Select(item => 
             {
@@ -43,11 +46,7 @@ public class StockController : ControllerBase
         }
         catch(Exception exception)
         {
-            Console.WriteLine(exception);
-            return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
-            {
-                StatusCode = 500
-            };
+            throw exception;
         }
         return Ok(stocks);
     }
@@ -62,16 +61,16 @@ public class StockController : ControllerBase
         try
         {
             StockEntity stockEntity = await _stockService.GetByIdService(id);
+            if(stockEntity == null)
+            {
+                throw new Exception("Stock Not Found");
+            }
             stockDTO = _mapper.Map<StockEntity, StockDTO>(stockEntity);
             stockDTO.IsValueForMoney = _stockService.GetIsValueForMoney(stockDTO.Kms, stockDTO.Price);
         }
         catch(Exception exception)
         {
-            Console.WriteLine(exception);
-            return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
-            {
-                StatusCode = 500
-            };
+            throw exception;
         }
         return Ok(stockDTO);
     }
@@ -85,15 +84,15 @@ public class StockController : ControllerBase
         StockEntity stockEntity = _mapper.Map<CreateStockDTO, StockEntity>(createStockDTO);
         try
         {
+            if(createStockDTO == null)
+            {
+                throw new ArgumentNullException("Invalid Argument");
+            }
             await _stockService.AddService(stockEntity);
         }
         catch(Exception exception)
         {
-            Console.WriteLine(exception);
-            return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
-            {
-                StatusCode = 500
-            };
+            throw exception;
         }
         return NoContent();
     }
@@ -107,6 +106,10 @@ public class StockController : ControllerBase
         StockEntity stockEntity = _mapper.Map<UpdateStockDTO, StockEntity>(updateStockDTO);
         try
         {
+            if(updateStockDTO == null || updateStockDTO.Id == null)
+            {
+                throw new ArgumentNullException("Invalid Argument");
+            }
             StockEntity stock = await _stockService.GetByIdService(stockEntity.Id);
             if(stock == null)
             {
@@ -116,18 +119,7 @@ public class StockController : ControllerBase
         }
         catch(Exception exception)
         {
-            Console.WriteLine(exception);
-            if(exception.Message.Equals("Cannot find stock"))
-            {
-                return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
-                {
-                    StatusCode = 404
-                };
-            }
-            return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
-            {
-                StatusCode = 500
-            };
+            throw exception;
         }
         return NoContent();
     }
@@ -138,27 +130,20 @@ public class StockController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
+        if(id == null)
+        {
+            throw new ArgumentNullException("Invalid Argument");
+        }
         StockEntity stock = await _stockService.GetByIdService(id);
         if(stock == null)
-            return NotFound();
+            throw new Exception("Cannot find Stock");
         try
         {
             await _stockService.DeleteService(id);
         }
         catch(Exception exception)
         {
-            Console.WriteLine(exception);
-            if(exception.Message.Equals("Cannot find stock"))
-            {
-                return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
-                {
-                    StatusCode = 404
-                };
-            }
-            return new ObjectResult(new { error = "Internal Server Error", message = exception.Message })
-            {
-                StatusCode = 500
-            };
+            throw exception;
         }
         return NoContent();
     }
